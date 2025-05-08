@@ -1,15 +1,37 @@
 <x-base-layout>
+    <div class="max-w-7xl mx-auto px-4 py-10">
+        <h1 class="text-3xl font-bold text-gray-800 mb-10 text-center">Huidig Filmaanbod</h1>
 
-    <div class="container mx-auto px-4 py-8">
-        @foreach ($films as $film)
-            <div class="film-item bg-white shadow-md rounded-lg p-6 mb-6">
-                <h1 class="text-2xl font-bold text-gray-800 mb-4"><a href="films/{{ $film->id }}">{{ $film->title }}</a></h1>
-                <p class="text-gray-600"><strong>Duur: </strong>{{ $film->duur }}   Minuten</p>
-                <p class="text-gray-600"><strong>Release datum: </strong>{{ $film->release_datum }}</p>
-            </div>
-        @endforeach
-        <a href="{{ route('films.create') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-600 font-semibold py-2 px-4 rounded-lg shadow transition duration-200">
-            Film toevoegen
-        </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach ($films as $film)
+                <div class="bg-white shadow-lg rounded-xl overflow-hidden transition transform hover:scale-105 duration-300">
+                    <div class="p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">
+                            <a href="{{ route('films.show', $film->id) }}" class="hover:underline">
+                                {{ $film->title }}
+                            </a>
+                        </h2>
+                        <p class="text-gray-600 mb-1"><strong>Duur:</strong> {{ $film->duur }} minuten</p>
+                        <p class="text-gray-600 mb-4"><strong>Release:</strong> {{ $film->release_datum }}</p>
+
+                        <div class="flex justify-between items-center mt-4">
+                            <a href="{{ route('films.show', $film->id) }}" class="text-blue-600 hover:underline text-sm font-medium">
+                                Meer info
+                            </a>
+                            <a href="{{ route('films.delete', $film->id) }}" class="text-red-600 hover:underline text-sm font-medium">
+                                Verwijderen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+<br>
+        <div class="text-center mt-10">
+            <a href="{{ route('films.create') }}"
+                class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-300 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
+                ➕ Film toevoegen
+            </a>
+        </div>
     </div>
 </x-base-layout>
