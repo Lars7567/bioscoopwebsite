@@ -16,6 +16,7 @@ Route::name('films.')->group(function () {
     Route::get('/films', [FilmController::class, 'index'])->name('index');
     Route::get('/films/create', [FilmController::class, 'create'])->name('create');
     Route::post('/films', [FilmController::class, 'store'])->name('store');
+    Route::get('/films/{film}', [FilmController::class, 'show'])->name('show');
     Route::get('/films/edit/{film}', [FilmController::class, 'edit'])->name('edit');
     Route::put('/films/{film}', [FilmController::class, 'update'])->name('update');
 });
