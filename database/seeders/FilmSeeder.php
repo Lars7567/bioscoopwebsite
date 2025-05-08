@@ -17,7 +17,7 @@ class FilmSeeder extends Seeder
             [
                 'title' => 'Film 1',
                 'beschrijving' => 'Beschrijving van film 1',
-                'duur' => '120 minuten',
+                'duur' => '120',
                 'release_datum' => '2023-01-01',
                 'leeftijdskeuring' => 12,
                 'beschikbaarheid' => 1,
@@ -25,7 +25,7 @@ class FilmSeeder extends Seeder
             [
                 'title' => 'Film 2',
                 'beschrijving' => 'Beschrijving van film 2',
-                'duur' => '90 minuten',
+                'duur' => '90',
                 'release_datum' => '2023-02-01',
                 'leeftijdskeuring' => 16,
                 'beschikbaarheid' => 0,
