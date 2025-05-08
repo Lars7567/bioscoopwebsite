@@ -46,7 +46,11 @@ class FilmController extends Controller
         return redirect()->route('films.index')->with('success', 'Film bijgewerkt!');
     }
 
-    
+    public function destroy(film $film)
+    {
+        $film = Film::findOrFail($film->id);
+        return view('films.delete', compact('film'));
+    }
 
     private function save($film, FilmRequest $request)
     {
