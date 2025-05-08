@@ -1,0 +1,40 @@
+<x-base-layout>
+    <div class="container mx-auto px-4 py-8">
+            <div class="film-item bg-white shadow-md rounded-lg p-6 mb-6">
+                <h1 class="text-2xl font-bold text-gray-800 mb-4">{{ $film->title }}</h1>
+                <p class="text-gray-600"><strong>Beschrijving: </strong></p>
+                <div class="mb-3 p-2 border border-gray-300 rounded shadow-sm">
+                    <p class="text-gray-800 leading-relaxed">
+                        {{ $film->beschrijving }}
+                    </p>
+                </div>
+                <p class="text-gray-600"><strong>Duur: </strong></p>
+                <div class="mb-3 p-2 border border-gray-300 rounded shadow-sm">
+                    <p class="text-gray-800 leading-relaxed">
+                        {{ $film->duur }}   Minuten
+                    </p>
+                </div>
+                <p class="text-gray-600"><strong>Release datum: </strong></p>
+                <div class="mb-3 p-2 border border-gray-300 rounded shadow-sm">
+                    <p class="text-gray-800 leading-relaxed">
+                        {{ $film->release_datum }}
+                    </p>
+                </div>
+                <p class="text-gray-600"><strong>Vereiste leeftijd: </strong></p>
+                <div class="mb-3 p-2 border border-gray-300 rounded shadow-sm">
+                    <p class="text-gray-800 leading-relaxed">
+                        {{ $film->leeftijdskeuring }}
+                    </p>
+                </div>
+                <p class="text-gray-600"><strong>Beschikbaarheid: </strong></p>
+                <div class="mb-3 p-2 border border-gray-300 rounded shadow-sm">
+                    <p class="text-gray-800 leading-relaxed">
+                        {{ $film->beschikbaarheid ? 'Ja' : 'Nee' }}
+                    </p>
+                </div>
+                <br>
+                <a href="{{ route('films.edit', $film->id) }}" class="text-blue-500 hover:underline">Bewerken</a>
+                <a href="{{ route('films.index') }}" class="text-blue-500 hover:underline">Terug</a>
+            </div>
+    </div>
+</x-base-layout>
