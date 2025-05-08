@@ -28,19 +28,23 @@ class FilmController extends Controller
         return redirect()->route('films.index')->with('success', 'Film toegevoegd!');
     }
 
-        public function edit($id)
-        {
-            $film = Film::findOrFail($id);
-            return view('films.edit', compact('film'));
-        }
-        
-
-        public function update(FilmRequest $request, Film $film)
-        {
-            $this->save($film, $request);
-            
-            return redirect()->route('films.index')->with('success', 'Film bijgewerkt!');
-        }
+    public function show($id)
+    {
+        $film = Film::findOrFail($id);
+        return view('films.show', compact('film'));
+    }
+    
+    public function edit($id)
+    {
+        $film = Film::findOrFail($id);
+        return view('films.edit', compact('film'));
+    }
+    
+    public function update(FilmRequest $request, Film $film)
+    {
+        $this->save($film, $request);
+        return redirect()->route('films.index')->with('success', 'Film bijgewerkt!');
+    }
 
     
 
