@@ -16,8 +16,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="duur" class="block text-gray-700 text-sm font-bold mb-2">Duur:</label>
-                <input type="text" name="duur" id="duur" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="duur" class="block text-gray-700 text-sm font-bold mb-2">Duur: (in minuten)</label>
+                <input type="number" name="duur" id="duur" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">

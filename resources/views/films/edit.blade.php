@@ -1,7 +1,15 @@
 <x-base-layout>
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-6">Aanpassen van film</h1>
-
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <form action="{{ route('films.update', $film->id) }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             @csrf
             @method('PUT')
@@ -17,8 +25,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="duur" class="block text-gray-700 text-sm font-bold mb-2">Duur:</label>
-                <input type="text" name="duur" id="duur" value="{{ $film->duur }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="duur" class="block text-gray-700 text-sm font-bold mb-2">Duur: (in minuten)</label>
+                <input type="number" name="duur" id="duur" value="{{ $film->duur }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
