@@ -28,28 +28,30 @@ class FilmController extends Controller
         return redirect()->route('films.index')->with('success', 'Film toegevoegd!');
     }
 
-    public function edit($id)
-    {
-        $films = Film::findOrFail($id);
-        return view('films.edit', compact('films'));
-    }
-
-    public function update(FilmRequest $request, film $film)
-    {
-        $films = Film::findOrFail($film->id);
-        $this->save($films, $request);
+        public function edit($id)
+        {
+            $film = Film::findOrFail($id);
+            return view('films.edit', compact('film'));
+        }
         
-        return redirect()->route('films.index')->with('success', 'Film bijgewerkt!');
-    }
 
-    private function save($films, FilmRequest $request)
+        public function update(FilmRequest $request, Film $film)
+        {
+            $this->save($film, $request);
+            
+            return redirect()->route('films.index')->with('success', 'Film bijgewerkt!');
+        }
+
+    
+
+    private function save($film, FilmRequest $request)
     {
-        $films->title = $request->input('title');
-        $films->beschrijving = $request->input('beschrijving');
-        $films->duur = $request->input('duur');
-        $films->release_datum = $request->input('release_datum');
-        $films->leeftijdskeuring = $request->input('leeftijdskeuring');
-        $films->beschikbaarheid = $request->input('beschikbaarheid');
-        $films->save();
+        $film->title = $request->input('title');
+        $film->beschrijving = $request->input('beschrijving');
+        $film->duur = $request->input('duur');
+        $film->release_datum = $request->input('release_datum');
+        $film->leeftijdskeuring = $request->input('leeftijdskeuring');
+        $film->beschikbaarheid = $request->input('beschikbaarheid');
+        $film->save();
     }
 }
