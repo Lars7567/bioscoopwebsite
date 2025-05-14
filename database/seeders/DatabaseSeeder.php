@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FilmSeeder::class,
             RollSeeder::class,
-
+            BookingSeeder::class,
         ]);
     }
+    
 }

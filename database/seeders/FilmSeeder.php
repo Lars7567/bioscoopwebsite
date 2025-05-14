@@ -16,23 +16,23 @@ class FilmSeeder extends Seeder
         $films = [
             [
                 'title' => 'Film 1',
-                'beschrijving' => 'Beschrijving van film 1',
-                'duur' => '120',
-                'release_datum' => '2023-01-01',
-                'leeftijdskeuring' => 12,
-                'beschikbaarheid' => 1,
+                'description' => 'Beschrijving van film 1',
+                'duration' => '120',
+                'release_date' => '2023-01-01',
+                'age_rating' => 12,
+                'availability' => 1,
             ],
             [
                 'title' => 'Film 2',
-                'beschrijving' => 'Beschrijving van film 2',
-                'duur' => '90',
-                'release_datum' => '2023-02-01',
-                'leeftijdskeuring' => 16,
-                'beschikbaarheid' => 0,
+                'description' => 'Beschrijving van film 2',
+                'duration' => '90',
+                'release_date' => '2023-02-01',
+                'age_rating' => 16,
+                'availability' => 0,
             ],
         ];
 
-        DB::table('film')->insert($films);
+        DB::table('films')->insert($films);
 
     }
 }

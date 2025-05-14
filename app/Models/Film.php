@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
+use App\Models\Resevering;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Film extends Model
 {
-    protected $table = 'film';
+    protected $table = 'films';
     protected $fillable = [
         'title',
         'beschrijving',
@@ -15,4 +16,10 @@ class Film extends Model
         'leeftijdskeuring',
         'beschikbaarheid',
     ];
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class, 'film_id');
+    }
+
 }

@@ -11,7 +11,7 @@ class FilmController extends Controller
 {
     public function index()
     {
-        $films = DB::table('film')->get();
+        $films = DB::table('films')->get();
         return view('films.index', compact('films'));
     }
 
@@ -24,7 +24,7 @@ class FilmController extends Controller
     {
         $films = new Film();
         $this->save($films, $request);
-        
+
         return redirect()->route('films.index')->with('success', 'Film toegevoegd!');
     }
 
@@ -33,33 +33,36 @@ class FilmController extends Controller
         $film = Film::findOrFail($id);
         return view('films.show', compact('film'));
     }
-    
+
     public function edit($id)
     {
         $film = Film::findOrFail($id);
         return view('films.edit', compact('film'));
     }
-    
+
     public function update(FilmRequest $request, Film $film)
     {
         $this->save($film, $request);
         return redirect()->route('films.index')->with('success', 'Film bijgewerkt!');
     }
 
-    public function destroy(film $film)
+    public function delete(film $film)
     {
         $film = Film::findOrFail($film->id);
-        return view('films.delete', compact('film'));
+        $film->delete();
+
+
+        return redirect()->route('films.index')->with('success', 'Film verwijderd!');
     }
 
     private function save($film, FilmRequest $request)
     {
         $film->title = $request->input('title');
-        $film->beschrijving = $request->input('beschrijving');
-        $film->duur = $request->input('duur');
-        $film->release_datum = $request->input('release_datum');
-        $film->leeftijdskeuring = $request->input('leeftijdskeuring');
-        $film->beschikbaarheid = $request->input('beschikbaarheid');
+        $film->description = $request->input('description');
+        $film->duration = $request->input('duration');
+        $film->release_date = $request->input('release_date');
+        $film->age_rating = $request->input('age_rating');
+        $film->availability = $request->input('availability');
         $film->save();
     }
 }

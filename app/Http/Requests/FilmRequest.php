@@ -16,11 +16,11 @@ class FilmRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'beschrijving' => 'required|string|max:1000',
-            'duur' => 'required|integer|min:1',
-            'release_datum' => 'required|date',
-            'leeftijdskeuring' => 'required|integer|min:0|max:18',
-            'beschikbaarheid' => 'required|boolean',
+            'description' => 'required|string|max:1000',
+            'duration' => 'required|integer|min:1',
+            'release_date' => 'required|date',
+            'age_rating' => 'required|integer|min:0|max:18',
+            'availability' => 'required|boolean',
         ];
     }
 }

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BookingController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +23,13 @@ Route::name('films.')->group(function () {
     Route::get('/films/{film}', [FilmController::class, 'show'])->name('show');
     Route::get('/films/{film}/edit', [FilmController::class, 'edit'])->name('edit');
     Route::put('/films/{film}', [FilmController::class, 'update'])->name('update');
-    Route::delete('/films/{film}/delete', [FilmController::class, 'delete'])->name('delete');
+    Route::get('/films/{film}/delete', [FilmController::class, 'delete'])->name('delete');
+});
+
+Route::name('resevering.')->group(function () {
+    Route::get('/resevering', [BookingController::class, 'index'])->name('index');
+    Route::get('/resevering/create', [BookingController::class, 'create'])->name('create');
+    Route::post('/resevering', [BookingController::class, 'store'])->name('store');
 });
 
 Route::name('about.')->group(function () {
