@@ -15,28 +15,24 @@
             @method('PUT')
 
             <div class="mb-4">
-                <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Titel:</label>
-                <input type="text" name="title" id="title" value="{{ $film->title }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="title" id="title" value="{{ $film->title }}" placeholder="Titel" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
-                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Beschrijving:</label>
-                <textarea name="description" id="description" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $film->description }}</textarea>
+                <textarea name="description" id="description" placeholder="Beschrijving" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $film->description }}</textarea>
             </div>
 
             <div class="mb-4">
-                <label for="duration" class="block text-gray-700 text-sm font-bold mb-2">Duur: (in minuten)</label>
-                <input type="number" name="duration" id="duration" value="{{ $film->duration }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="number" name="duration" id="duration" value="{{ $film->duration }}" placeholder="Duur (in minuten)" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
-                <label for="release_date" class="block text-gray-700 text-sm font-bold mb-2">Release datum:</label>
-                <input type="date" name="release_date" id="release_date" value="{{ $film->release_date }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="date" name="release_date" id="release_date" value="{{ $film->release_date }}" placeholder="Release datum" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
-                <label for="age_rating" class="block text-gray-700 text-sm font-bold mb-2">Vereiste leeftijd:</label>
                 <select name="age_rating" id="age_rating" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option disabled selected>Vereiste leeftijd</option>
                     @for ($i = 1; $i <= 18; $i++)
                         <option value="{{ $i }}" {{ $film->age_rating == $i ? 'selected' : '' }}>{{ $i }}</option>
                     @endfor
@@ -44,8 +40,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="availability" class="block text-gray-700 text-sm font-bold mb-2">Beschikbaarheid:</label>
                 <select name="availability" id="availability" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option disabled selected>Beschikbaarheid</option>
                     <option value="1" {{ $film->availability == 1 ? 'selected' : '' }}>Ja</option>
                     <option value="0" {{ $film->availability == 0 ? 'selected' : '' }}>Nee</option>
                 </select>

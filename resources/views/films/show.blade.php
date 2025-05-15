@@ -33,7 +33,7 @@
                     </p>
                 </div>
                 <br>
-                <a href="{{ route('resevering.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-600 font-semibold py-2 px-4 rounded-lg shadow transition duration-200">Reseveren</a>
+                <a href="{{ route('resevering.create', $film->id) }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-600 font-semibold py-2 px-4 rounded-lg shadow transition duration-200">Reseveren</a>
                 <a href="{{ route('films.edit', $film->id) }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-600 font-semibold py-2 px-4 rounded-lg shadow transition duration-200">Bewerken</a>
                 <a href="{{ route('films.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-600 font-semibold py-2 px-4 rounded-lg shadow transition duration-200">Terug</a>
             </div>

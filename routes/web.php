@@ -28,7 +28,7 @@ Route::name('films.')->group(function () {
 
 Route::name('resevering.')->group(function () {
     Route::get('/resevering', [BookingController::class, 'index'])->name('index');
-    Route::get('/resevering/create', [BookingController::class, 'create'])->name('create');
+    Route::get('/resevering/create/{film}', [BookingController::class, 'create'])->name('create');
     Route::post('/resevering', [BookingController::class, 'store'])->name('store');
 });
 

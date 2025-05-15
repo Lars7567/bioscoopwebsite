@@ -16,7 +16,7 @@
 
                         <div class="flex justify-between items-center mt-4">
                             <a href="{{ route('films.show', $film->id) }}" class="text-blue-600 hover:underline text-sm font-medium">
-                                Bekijk
+                                    Bekijk
                             </a>
                             <a href="{{ route('films.delete', $film->id) }}" class="text-red-600 hover:underline text-sm font-medium">
                                     Verwijderen
@@ -26,11 +26,12 @@
                 </div>
             @endforeach
         </div>
-        <div class="text-center mt-10">
-            <a href="{{ route('films.create') }}"
-                class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-300 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
-                ➕ Film toevoegen
-            </a>
-        </div>
+    </div>
+    <br>
+    <div class="text-center mt-10">
+        <a href="{{ route('films.create') }}"
+            class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-300 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
+            ➕ Add Film
+        </a>
     </div>
 </x-base-layout>

@@ -35,10 +35,4 @@
             </table>
         @endif
     </div>
-    <div class="text-center mt-10">
-        <a href="{{ route('resevering.create') }}"
-            class="inline-block bg-blue-600 hover:bg-blue-700 text-gray-300 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
-            ➕ Film toevoegen
-        </a>
-    </div>
 </x-base-layout>
