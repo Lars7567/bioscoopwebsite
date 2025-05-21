@@ -16,6 +16,7 @@ class Booking extends Model
         'time',
         'seats',
         'film_id',
+        'seat_id',
     ];
 
     public function film()
@@ -23,8 +24,8 @@ class Booking extends Model
         return $this->belongsTo(Film::class, 'film_id');
     }
 
-    public function user()
+    public function seat()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Seat::class , 'seat_id');
     }
 }

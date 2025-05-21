@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,19 +17,17 @@ class BookingSeeder extends Seeder
         $booking = [
             [
               
-                'first_name' => 'John',
-                'last_name' => 'Doe',
+                'name' => 'John Doe',
                 'email' => 'test@gmail.com',
                 'phone' => '1234567890',
                 'time' => '2023-10-01 14:00:00',
-                'seats' => 2,
                 'film_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'seat_id' => 1,
+          
             ],
             // Add more resevering records as needed
         ];
         
-        DB::table('bookings')->insert($booking);
+        Booking::insert($booking);
     }
 }

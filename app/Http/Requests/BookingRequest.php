@@ -22,13 +22,12 @@ class BookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
             'phone' => 'required|string|max:15',
             'time' => 'required',
-            'seats' => 'required|integer|min:1',
             'film_id' => 'required|exists:films,id',
+            'seat_id' => 'required|exists:seats,id',
         ];
     }
 }

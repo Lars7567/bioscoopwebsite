@@ -26,11 +26,7 @@ Route::name('films.')->group(function () {
     Route::get('/films/{film}/delete', [FilmController::class, 'delete'])->name('delete');
 });
 
-Route::name('resevering.')->group(function () {
-    Route::get('/resevering', [BookingController::class, 'index'])->name('index');
-    Route::get('/resevering/create/{film}', [BookingController::class, 'create'])->name('create');
-    Route::post('/resevering', [BookingController::class, 'store'])->name('store');
-});
+
 
 Route::name('about.')->group(function () {
     Route::get('/about', [AboutController::class, 'index'])->name('index');
@@ -44,6 +40,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::name('resevering.')->group(function () {
+        Route::get('/resevering', [BookingController::class, 'index'])->name('index');
+        Route::get('/resevering/create/{film}', [BookingController::class, 'create'])->name('create');
+        Route::post('/resevering', [BookingController::class, 'store'])->name('store');
+        Route::delete('/resevering/{resevering}/delete', [BookingController::class, 'delete'])->name('delete');
+    });
 });
 
 require __DIR__ . '/auth.php';
