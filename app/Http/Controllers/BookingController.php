@@ -2,49 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BookingRequest;
-use App\Http\Requests\ReseveringRequest;
-use App\Models\Booking;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ReseveringRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests\BookingRequest;
+use App\Models\Booking;
+use App\Models\user;
 use App\Models\Film;
+use App\Models\seat;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
     public function index()
     {
-    
-        $reserveringen = Booking::all();
-        $films = Film::all();
-        return view('resevering.index', compact('reserveringen', 'films'));
+        $user = Auth::user();
+        $booking = Booking::where('name', $user->name)->get();
+        return view('resevering.index', compact('booking'));
     }
 
-    public function create() 
+    public function create(Film $film, seat $seat)
     {
-        $films = Film::all();
-        return view('resevering.create', compact('films'));
+        $filmId = $film->id;
+        $film = Film::find($filmId);
+        $seats = seat::all();
+
+        // Check if the seat exists
+        if (!$seat) {
+            return redirect()->route('resevering.index')->with('error', 'Zitplaats niet gevonden.');
+        }
+
+        // Check if the film exists
+        if (!$film) {
+            return redirect()->route('film.index')->with('error', 'Film niet gevonden.');
+        }
+
+        $user = Auth::user();
+
+        return view('resevering.create', compact('film', 'user', 'seats'));
     }
+
 
     public function store(BookingRequest $request)
     {
-        $reservering = new Booking();
-        $this->save($reservering, $request);
+        $booking = new Booking();
+        $this->save($booking, $request);
 
         return redirect()->route('resevering.index')->with('success', 'Reservering toegevoegd!');
     }
 
-    private function save(Booking $resevering, BookingRequest $request)
+    public function delete(Booking $booking)
     {
- 
-        $resevering->first_name = $request->input('first_name');
-        $resevering->last_name = $request->input('last_name');
-        $resevering->email = $request->input('email');
-        $resevering->phone = $request->input('phone');
-        $resevering->time = $request->input('time');
-        $resevering->seats = $request->input('seats');
-        $resevering->film_id = $request->input('film_id');
-       
-        $resevering->save();
+
+        // Check if the booking exists
+        $booking = Booking::findOrFail($booking->id);
+        $booking->delete();
+
+
+        return redirect()->route('resevering.index')->with('success', 'Reservering geannuleerd!');
     }
 
+    private function save(Booking $booking, BookingRequest $request)
+    {
+
+        $booking->name = $request->input('name');
+        $booking->email = $request->input('email');
+        $booking->phone = $request->input('phone');
+        $booking->time = $request->input('time');
+        $booking->film_id = $request->input('film_id');
+        $booking->seat_id = $request->input('seat_id');
+
+        $booking->save();
+    }
 }
