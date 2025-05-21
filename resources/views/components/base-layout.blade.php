@@ -37,14 +37,14 @@
                         <x-nav-link :href="route('films.index')" :active="request()->routeIs('films.index')" class="text-gray-900 hover:text-black">
                             {{ __('Films') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('resevering.index')" :active="request()->routeIs('resevering.index')" class="text-gray-900 hover:text-black">
+                            {{ __('Reserveringen') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('about.index')" :active="request()->routeIs('about.index')" class="text-gray-900 hover:text-black">
                             {{ __('Over ons') }}
                         </x-nav-link>
                         <x-nav-link :href="route('contact.index')" :active="request()->routeIs('contact.index')" class="text-gray-900 hover:text-black">
                             {{ __('Contact') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('resevering.index')" :active="request()->routeIs('resevering.index')" class="text-gray-900 hover:text-black">
-                            {{ __('Reserveringen') }}
                         </x-nav-link>
                     </div>
                 </div>
