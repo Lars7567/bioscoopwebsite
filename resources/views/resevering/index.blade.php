@@ -7,37 +7,30 @@
             <p class="text-gray-700">No bookings available.</p>
         @else
             <table class="table-auto w-full bg-white shadow-md rounded mb-6">
-                <thead>
-                    <tr class="bg-gray-200 text-gray-700">
-                        <th class="px-4 py-2">Name</th>
-                        <th class="px-4 py-2">Email</th>
-                        <th class="px-4 py-2">Phone</th>
-                        <th class="px-4 py-2">Time</th>
-                        <th class="px-4 py-2">Seat / Row</th>
-                        <th class="px-4 py-2">Film</th>
-                        <th class="px-4 py-2">-</th>
-                    </tr>
-                </thead>
                 <tbody>
                     @foreach ($booking->where('name', auth()->user()->name) as $booking)
-                        <tr class="border-t">
-                            <td class="px-4 py-2">{{ $booking->name }}</td>
-                            <td class="px-4 py-2">{{ $booking->email }}</td>
-                            <td class="px-4 py-2">{{ $booking->phone }}</td>
-                            <td class="px-4 py-2">{{ $booking->time }}</td>
-                            <td class="px-4 py-2">{{ $booking->seat->seat_number }} / {{ $booking->seat->row_number }}</td>
-                            <td class="px-4 py-2">{{ $booking->film->title }}</td>
-                            <td class="px-4 py-2">
-                                <form action="{{ route('resevering.delete', $booking->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this booking?');" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="inline-flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-700 font-semibold px-3 py-1 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-400">
-                                        Reservering annuleren
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                        <div class="p-6">
+                            <p class="text-gray-800 mb-2"><strong>Naam:</strong> {{ $booking->name ?? 'Onbekend' }}</p>
+                            <p class="text-gray-600 mb-1"><strong>Email:</strong> {{ $booking->email ?? 'Onbekend' }} Minuten</p>
+                            <p class="text-gray-600 mb-1"><strong>Telefoon:</strong> {{ $booking->phone ?? 'Onbekend' }}</p>
+                            <p class="text-gray-600 mb-1"><strong>Resevering tijd:</strong> {{ $booking->time ?? 'Onbekend' }}</p>
+                            <br>
+                            <p class="text-gray-800 mb-2"><strong>Stoel numer - rij:</strong> {{ $booking->seat->seat_number ?? 'Onbekend' }}</p>
+                            <p class="text-gray-800 mb-2"><strong>Film:</strong> {{ $booking->film->title ?? 'Onbekend' }}</p>
+                            <br>
+                            <p class="text-gray-800 mb-2"><strong>Zaal:</strong> {{ $booking->filmzaal?->zaal?->zaal_nummer ?? 'Onbekend' }}</p>
+                            <p class="text-gray-800 mb-2"><strong>Geluidsysteem:</strong> {{ $booking->filmzaal?->zaal?->geluidsysteem ?? 'Onbekend' }}</p>
+                            <p class="text-gray-800 mb-2"><strong>Scherm Type:</strong> {{ $booking->filmzaal?->zaal?->scherm_type ?? 'Onbekend' }}</p>
+                            <br>
+                            @if($booking->film)
+                                <p class="text-gray-600 mb-1"><strong>Film speeltijd:</strong> {{ $booking->film->duration }} minutes</p>
+                                <p class="text-gray-600 mb-1"><strong>Start tijd:</strong> {{ $booking->film->startTime }} minutes</p>
+                                <br>
+                                <p class="text-gray-600 mb-4"><strong>Release datum:</strong> {{ $booking->film->release_date }}</p>
+                            @endif
+                        </div>
+                        {{-- Geen foreach meer, direct de zaal tonen --}}
+                        <hr class="my-4 border-gray-300">
                     @endforeach
                 </tbody>
             </table>

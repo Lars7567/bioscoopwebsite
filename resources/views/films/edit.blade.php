@@ -31,6 +31,10 @@
             </div>
 
             <div class="mb-4">
+                <input type="datetime-local" name="start_time" id="start_time" value="{{ $film->startTime }}" placeholder="Start tijd" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
                 <select name="age_rating" id="age_rating" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     <option disabled selected>Vereiste leeftijd</option>
                     @for ($i = 1; $i <= 18; $i++)

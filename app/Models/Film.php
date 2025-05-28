@@ -13,6 +13,7 @@ class Film extends Model
         'beschrijving',
         'duur',
         'release_datum',
+        'start_tijd',
         'leeftijdskeuring',
         'beschikbaarheid',
     ];
@@ -20,6 +21,12 @@ class Film extends Model
     public function booking()
     {
         return $this->hasMany(Booking::class, 'film_id');
+    }
+
+    public function zalen()
+    {
+        return $this->belongsToMany(Zaal::class, 'film_zaal',
+            'film_id', 'zaal_id');
     }
 
 }

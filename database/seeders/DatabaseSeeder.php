@@ -16,15 +16,18 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'),
+            'name' => 'Lars Mooij',
+            'email' => 'mooij.lars2005@gmail.com',
+            'password' => bcrypt('12345678'),
+            'is_admin' => true,
         ]);
         $this->call([
             FilmSeeder::class,
+            ZaalSeeder::class,
             RollSeeder::class,
             SeatSeeder::class,
             BookingSeeder::class,
+            FilmZaalSeeder::class,
         ]);
     }
     
