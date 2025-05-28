@@ -61,6 +61,7 @@ class FilmController extends Controller
         $film->description = $request->input('description');
         $film->duration = $request->input('duration');
         $film->release_date = $request->input('release_date');
+        $film->starttime = $request->input('start_time');
         $film->age_rating = $request->input('age_rating');
         $film->availability = $request->input('availability');
         $film->save();

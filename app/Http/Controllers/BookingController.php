@@ -10,6 +10,7 @@ use App\Models\Booking;
 use App\Models\user;
 use App\Models\Film;
 use App\Models\seat;
+use App\Models\FilmZaal;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
@@ -17,8 +18,10 @@ class BookingController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $booking = Booking::where('name', $user->name)->get();
-        return view('resevering.index', compact('booking'));
+        $booking = Booking::with('filmzaal.zaal')->where('name', $user->name)->get();
+        $filmzalen = FilmZaal::with(['film', 'zaal',])->get();
+
+        return view('resevering.index', compact('booking', 'filmzalen'));
     }
 
     public function create(Film $film, seat $seat)
@@ -71,6 +74,7 @@ class BookingController extends Controller
         $booking->time = $request->input('time');
         $booking->film_id = $request->input('film_id');
         $booking->seat_id = $request->input('seat_id');
+        // $booking->film_zaal_id = $request->input('film_zaal_id');
 
         $booking->save();
     }

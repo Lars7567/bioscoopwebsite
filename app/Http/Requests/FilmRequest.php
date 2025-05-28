@@ -19,6 +19,7 @@ class FilmRequest extends FormRequest
             'description' => 'required|string|max:1000',
             'duration' => 'required|integer|min:1',
             'release_date' => 'required|date',
+            'start_time' => 'required|date_format:Y-m-d\TH:i',
             'age_rating' => 'required|integer|min:0|max:18',
             'availability' => 'required|boolean',
         ];

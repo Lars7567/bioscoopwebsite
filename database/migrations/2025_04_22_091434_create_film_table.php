@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->date('duration');
-            $table->date('release_date');
+            $table->string('release_date');
+            $table->date('startTime');
             $table->integer('age_rating');
             $table->integer('availability');
             $table->timestamps();
