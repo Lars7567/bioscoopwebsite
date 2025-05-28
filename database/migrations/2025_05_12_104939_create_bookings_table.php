@@ -19,8 +19,8 @@ return new class extends Migration
             $table->time('time');
             $table->timestamps();
 
-            $table->foreignId('seat_id')->constrained('seats')->onDelete('set null');
-            $table->foreignId('film_id')->constrained('films')->onDelete('set null');
+            $table->foreignId('seat_id')->constrained('seats')->onDelete('restrict');
+            $table->foreignId('film_id')->constrained('films')->onDelete('restrict');
         });
     }
 
@@ -30,6 +30,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('bookings');
-
     }
 };

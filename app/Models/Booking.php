@@ -24,8 +24,18 @@ class Booking extends Model
         return $this->belongsTo(Film::class, 'film_id');
     }
 
+    public function zaal()
+    {
+        return $this->belongsTo(Zaal::class, 'zaal_id');
+    }
+
     public function seat()
     {
         return $this->belongsTo(Seat::class , 'seat_id');
+    }
+
+    public function filmZaal()
+    {
+        return $this->belongsTo(FilmZaal::class, 'film_zaal_id');
     }
 }
